@@ -32,7 +32,7 @@ header h4 {
 }
 
 #quizblock h2 {
-  font-size: 50px;
+  font-size: 40px;
   margin-top: 60px;
   margin-bottom: 10px;
 }
@@ -40,14 +40,40 @@ header h4 {
 #quizblock p {
   font-size: 30px;
   text-align: center;
+  width: 100%;
 }
 
 .nbutton {
   padding: 15px 25px 15px 25px;
   font-size: 20px;
   background-color:#351c75;
-  border-radius: 5px;
+  border-radius: 10px;
   color: white;
   border:none;
+  text-align: left;
 }
 
+.nbutton:hover {
+  background-color:#bd60e7;
+}
+
+#buttonholder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+#buttonholder .answerbutton {
+  min-width: 40%;
+  margin-right: 100px;
+  margin-top: 10px;
+}
+
+
+#initialstext {
+  font-size: 30px;
+}
+
+#initialsbutton, #initialsinput, #initialstext {
+  display: none;
+}
