@@ -142,3 +142,25 @@ header h4 {
 #hsback {
   margin-right: 20px;
 }
+
+#hslist {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  text-align: left;
+}
+
+#hslist ul {
+  list-style-type: none;
+  padding-left: 0px;
+  width:100%;
+}
+
+#hslist li {
+  padding: 5px;
+  font-size: 20px;
+}
+
+#hslist li:nth-child(odd) {
+  background-color: #d9d3e9;
+}
