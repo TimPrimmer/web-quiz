@@ -13,8 +13,12 @@ var initialsText = document.querySelector("#initialstext");
 var hsBox = document.querySelector("#hsbox");
 var hsList = document.querySelector("#hslist");
 
+var timerText = document.querySelector("#timer");
+
 var counter = 0;
 var score = 0;
+var timer = 0;
+var timerRef;
 var totalScores = [];
 var started = false;
 
@@ -45,8 +49,23 @@ var startQuiz = function (event) {
   startText.style.display = "none"; // hiding the text we see at the start of the quiz
   startButton.style.display = "none"; // hiding the Start Quiz button we see at the start of the quiz
   started = true;
+  clearInterval(timerRef); // resetting score
+  timer = 75;
+  timerText.textContent = timer;
+  timerRef = setInterval(quizTimer, 1000);
   displayQuestion(counter);
-};
+}
+
+
+var quizTimer = function () {
+  timer--;
+  timerText.textContent = timer;
+  if (timer <= 0) {
+    clearInterval(timerRef);
+    buttonDiv.innerHTML = "";
+    quizEnding();
+  }
+}
 
 var displayQuestion = function (qnum) {
   questionText.style.textAlign = "left"; // styling the question text to be to the left
@@ -79,16 +98,45 @@ var bodyClicked = function (event) {
         quizEnding();
       }
     }
-    else {
+    else 
+    {
       buttonDiv.innerHTML = ""; // reseting the questions, aka deleting them
-      if (counter < (questions.length - 1)) {
+      if (counter < (questions.length - 1)) 
+      {
         counter++;
-        displayQuestion(counter);
-        answeredStyle("Wrong!");
+        if (timer - 10 >= 1) // checking to see if we'll go under 1 when we subtract 10 points for getting the question incorrect
+        {
+          timer = timer - 10;
+          timerText.textContent = timer;
+          displayQuestion(counter);
+          answeredStyle("Wrong!");
+        }
+        else 
+        {
+          timer = 0;
+          timerText.textContent = timer;
+          clearInterval(timerRef);
+          buttonDiv.innerHTML = "";
+          quizEnding();
+        }
       }
-      else {
-        answeredStyle("Wrong!");
-        quizEnding();
+      else 
+      {
+        if (timer - 10 >= 1) // checking to see if we'll go under 1 when we subtract 10 points for getting the question incorrect, but this also checks if its the last question
+        {
+          timer = timer - 10;
+          timerText.textContent = timer;
+          answeredStyle("Wrong!");
+          quizEnding();
+        }
+        else 
+        {
+          timer = 0;
+          timerText.textContent = timer;
+          clearInterval(timerRef);
+          buttonDiv.innerHTML = "";
+          quizEnding();
+        }
       }
     }
   }
@@ -105,6 +153,8 @@ var bodyClicked = function (event) {
       startText.style.display = "none"; // hiding the score text
       initialsBox.style.display = "none"; // hiding the intials box div
       started = false; // resetting our started status so after we clicked submit, the user can see the highscores page again
+      timer = 0;
+      timerText.textContent = timer;
       var tempscore = {
         initials: initialsinput.value,
         playerscore: score
@@ -123,13 +173,11 @@ var bodyClicked = function (event) {
   }
 
   if (clicked.id === "hscore")  // only runs if we're clicking on the "view high scores" button in the top left
-  { 
-    if (started === false)
-    {
+  {
+    if (started === false) {
       displayHighscores();
     }
-    else
-    {
+    else {
       alert("Finish the current quiz to see the highscores");
     }
   }
@@ -137,7 +185,7 @@ var bodyClicked = function (event) {
   if (clicked.id === "hsclear")  // only runs if we're clicking on the "clear high score" button on the highscores page
   {
     totalScores = []; // clearing our local scores
-    saveScores(); // saving the scores (or lack thereof) to the storage
+    localStorage.removeItem("highscores"); // removing our local storage variable
     displayHighscores();
   }
 };
@@ -192,6 +240,8 @@ var quizEnding = function () {
   startText.style.display = "block"; // displays the final score text
   initialsBox.style.display = "flex"; // displays the intial box where we get the users input
   startText.style.textAlign = "left";
+  score = timer;
+  clearInterval(timerRef);
   startText.textContent = "Your final score is " + score + ".";
 }
 
@@ -210,10 +260,6 @@ var displayHighscores = function () {
     tempUl.appendChild(tempLi);
   }
   hsList.appendChild(tempUl);
-}
-
-var saveLocalScores = function () {
- alert("test"); 
 }
 
 startButton.addEventListener("click", startQuiz); // runs when we click on "Start Quiz"

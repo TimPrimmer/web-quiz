@@ -18,6 +18,10 @@ header h4 {
   color: #b54be5;
 }
 
+#hscore:hover {
+  color: #351c75;
+}
+
 #mainsection {
   display: flex;
   justify-content: center;
