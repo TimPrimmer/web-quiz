@@ -35,9 +35,11 @@ header h4 {
   font-size: 40px;
   margin-top: 60px;
   margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
 }
 
-#quizblock p {
+#starttext {
   font-size: 30px;
   text-align: center;
   width: 100%;
@@ -57,6 +59,42 @@ header h4 {
   background-color:#bd60e7;
 }
 
+.nbuttonsmall {
+  padding: 10px 20px 10px 20px;
+  font-size: 15px;
+  background-color:#351c75;
+  border-radius: 7px;
+  color: white;
+  border:none;
+  text-align: left;
+}
+
+.nbuttonsmall:hover {
+  background-color:#bd60e7;
+}
+
+.holderanswered {
+  border-bottom: 0px;
+  border-top: 2px;
+  border-left: 0px;
+  border-right: 0px;
+  border-color: grey;
+  border-style: solid;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.textanswered {
+  color: grey;
+  font-size: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 30px;
+  text-align: center;
+}
+
 #buttonholder {
   display: flex;
   flex-wrap: wrap;
@@ -72,8 +110,35 @@ header h4 {
 
 #initialstext {
   font-size: 30px;
+  text-align: left;
+  display:inline-block;
 }
 
-#initialsbutton, #initialsinput, #initialstext {
+#initialsbox {
   display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px;
+}
+
+#initialsinput {
+  width: 60%;
+  height: 35px;
+  border-radius: 5px;
+}
+
+#initialsbutton {
+  margin-left: 10px;
+}
+
+#hsbox {
+  display: none;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#hsback {
+  margin-right: 20px;
 }
