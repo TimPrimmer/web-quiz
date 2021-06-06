@@ -35,8 +35,8 @@ header h4 {
   width: 50%;
 }
 
-#quizblock h2 {
-  font-size: 40px;
+#quizblock h2 { /* affects the question itself */
+  font-size: 45px;
   margin-top: 60px;
   margin-bottom: 10px;
   width: 100%;
@@ -47,6 +47,11 @@ header h4 {
   font-size: 30px;
   text-align: center;
   width: 100%;
+}
+
+.finalscore {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .nbutton {
@@ -120,16 +125,18 @@ header h4 {
 
 #initialsbox {
   display: none;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
   margin: 10px;
+  height: 80px;
 }
 
 #initialsinput {
-  width: 60%;
+  width: 50%;
   height: 35px;
+  flex-grow: 100%;
   border-radius: 5px;
+  margin-left: 15px;
 }
 
 #initialsbutton {

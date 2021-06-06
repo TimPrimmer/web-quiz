@@ -42,6 +42,16 @@ var questions = [ // giant question array that holds the question, potential ans
     q: "Arrays in JavaScript can be used to store ______.",
     pa: ["numbers and strings", "other arrays", "booleans", "all of the above"],
     a: "all of the above"
+  },
+  {
+    q: "String values must be enclosed within _____ when being assigned to variables.",
+    pa: ["commas", "curly brackets", "quotes", "parenthesis"],
+    a: "quotes"
+  },
+  {
+    q: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    pa: ["Javascript", "terminal/bash", "for loops", "console.log"],
+    a: "console.log"
   }
 ];
 
@@ -98,11 +108,9 @@ var bodyClicked = function (event) {
         quizEnding();
       }
     }
-    else 
-    {
+    else {
       buttonDiv.innerHTML = ""; // reseting the questions, aka deleting them
-      if (counter < (questions.length - 1)) 
-      {
+      if (counter < (questions.length - 1)) {
         counter++;
         if (timer - 10 >= 1) // checking to see if we'll go under 1 when we subtract 10 points for getting the question incorrect
         {
@@ -111,8 +119,7 @@ var bodyClicked = function (event) {
           displayQuestion(counter);
           answeredStyle("Wrong!");
         }
-        else 
-        {
+        else {
           timer = 0;
           timerText.textContent = timer;
           clearInterval(timerRef);
@@ -120,8 +127,7 @@ var bodyClicked = function (event) {
           quizEnding();
         }
       }
-      else 
-      {
+      else {
         if (timer - 10 >= 1) // checking to see if we'll go under 1 when we subtract 10 points for getting the question incorrect, but this also checks if its the last question
         {
           timer = timer - 10;
@@ -129,8 +135,7 @@ var bodyClicked = function (event) {
           answeredStyle("Wrong!");
           quizEnding();
         }
-        else 
-        {
+        else {
           timer = 0;
           timerText.textContent = timer;
           clearInterval(timerRef);
@@ -155,6 +160,7 @@ var bodyClicked = function (event) {
       started = false; // resetting our started status so after we clicked submit, the user can see the highscores page again
       timer = 0;
       timerText.textContent = timer;
+      startText.className = "";
       var tempscore = {
         initials: initialsinput.value,
         playerscore: score
@@ -242,6 +248,7 @@ var quizEnding = function () {
   startText.style.textAlign = "left";
   score = timer;
   clearInterval(timerRef);
+  startText.className = "finalscore";
   startText.textContent = "Your final score is " + score + ".";
 }
 
@@ -254,6 +261,7 @@ var displayHighscores = function () {
   hsBox.style.display = "flex"; //unhiding the highscores box
   var tempUl = document.createElement("ul");
   loadScores();
+  totalScores.sort((a, b) => parseFloat(b.playerscore) - parseFloat(a.playerscore)); // sorts the list of scores by the playerscore field
   for (x = 0; x < totalScores.length; x++) {
     var tempLi = document.createElement("li");
     tempLi.textContent = (x + 1) + ". " + totalScores[x].initials + " - " + totalScores[x].playerscore;
