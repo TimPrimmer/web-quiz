@@ -17,7 +17,7 @@ https://timprimmer.github.io/web-quiz/
 https://github.com/TimPrimmer/password-generator
 
 # Screenshot
-![Screenshot of Main Page](/assets/passwordscreenshot.png "Main Page")
+![Screenshot of Main Page](/assets/imgs/screenshot.png "Main Page")
 
 ## Contribution
 Made with ❤️ by Tim Primmer
