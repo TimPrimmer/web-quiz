@@ -14,7 +14,7 @@ across multiple sessions through the use of localstorage!
 https://timprimmer.github.io/web-quiz/
 
 # Github Repo
-https://github.com/TimPrimmer/password-generator
+https://github.com/TimPrimmer/web-quiz
 
 # Screenshot
 ![Screenshot of Main Page](/assets/imgs/screenshot.png "Main Page")
